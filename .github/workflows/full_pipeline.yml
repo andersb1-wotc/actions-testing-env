@@ -28,6 +28,7 @@ jobs:
   deploy-stg: 
     uses: andersb1-wotc/actions-testing-env/.github/workflows/_deploy.yml@main
     needs: [ build ] 
+    environment: stg
     secrets: inherit
     with:
       env: stg
@@ -35,5 +36,6 @@ jobs:
     uses: andersb1-wotc/actions-testing-env/.github/workflows/_deploy.yml@main
     needs: [ build, deploy-stg ] 
     secrets: inherit
+    environment: live
     with:
       env: live
