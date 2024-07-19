@@ -28,6 +28,16 @@ jobs:
               uses: actions/checkout@v4
               with:
                   fetch-depth: 1
-            - name: Dummy build process
+            - name: Dummy build check
               run: |
                 echo "This is the build step "
+            - name: Make Deploy files
+              run: |
+                DATE=$(date)
+                echo ${DATE} > deploy/date-time.txt
+            - name: Create Deploy Artifact
+              uses: actions/upload-artifact@v4
+              with:
+                name: DeployArtifact
+                path: deploy/
+                if-no-files-found: error

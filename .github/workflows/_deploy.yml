@@ -25,6 +25,15 @@ jobs:
               uses: actions/checkout@v4
               with:
                   fetch-depth: 1
-            - name: Dummy build process
+            - uses: actions/download-artifact@v4
+              with:
+                name: DeployArtifact
+                path: deploy
+            - name: Dummy build check
               run: |
                 echo "This is the deploy step "
+                ls -la 
+                ls -la deploy/
+            - name: Dummy Deploy Step
+              run: |
+                cat deploy/datetime.txt
