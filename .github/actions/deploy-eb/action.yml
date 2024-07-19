@@ -1,0 +1,11 @@
+name: 'Setup Env'
+description: 'Checkout the code and setup env'
+runs:
+    using: 'composite'
+    steps:
+        - name: EB Deploy  
+          shell: bash
+          run: |
+            # ENV: AWS_ACCESS_KEY_ID="${bamboo.aws_access_key_id}" AWS_SECRET_ACCESS_KEY="${bamboo.aws_secret_access_key}" AWS_DEFAULT_REGION="${bamboo.aws_default_region}" EBDEPLOYENV="${bamboo.ebdeployenv}"
+            # C:/"Program Files"/Python36/Scripts/eb.exe deploy %EBDEPLOYENV% --region %AWS_DEFAULT_REGION% --verbose --timeout 60
+            eb deploy ${EBDEPLOYENV} --region ${AWS_DEFAULT_REGION} --verbose --timeout 60

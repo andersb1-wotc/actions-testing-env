@@ -1,0 +1,39 @@
+name: Waterdeep - LIVE Full Pipeline
+
+on:
+  # push:
+  #   branches: [ main, feat/github-actions-1 ]
+  #   paths-ignore:
+  #     - "README.md"
+  workflow_dispatch:
+
+
+permissions:
+  id-token: write   # This is required for requesting the JWT
+  contents: read    # This is required for actions/checkout
+  packages: read
+  actions: read
+
+jobs: 
+  # build-and-test: 
+  #   uses: DnDBeyond/waterdeep-web/.github/workflows/_build-and-test.yml@feat/github-actions-1
+  #   secrets: inherit
+  #   #  with: # no inputs
+  build: 
+    uses: andersb1-wotc/actions-testing-env/.github/workflows/_build.yml@main
+    secrets: inherit
+     with: 
+      var1: 'foo'
+      var2: 'bar'
+  deploy-stg: 
+    uses: andersb1-wotc/actions-testing-env/.github/workflows/_deploy.yml@main
+    needs: [ build ] 
+    secrets: inherit
+    with:
+      env: stg
+  deploy-live: 
+    uses: andersb1-wotc/actions-testing-env/.github/workflows/_deploy.yml@main
+    needs: [ build, deploy-stg ] 
+    secrets: inherit
+    with:
+      env: live

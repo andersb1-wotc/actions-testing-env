@@ -1,0 +1,24 @@
+name: 'MS Build'
+description: 'Run MSBuild against project files'
+inputs:
+    PROJFILE:
+        description: 'relatrive path to project file (from root)'
+        required: true
+    WORKDIR: 
+        description: 'Working directory for MS Build job'
+        required: true
+        default: 'waterdeep/Source/curse.waterdeep.web'
+    OPTIONS:
+        description: 'MS Build Options string'
+        required: false
+runs:
+    using: 'composite'
+    steps:
+        - name: Add msbuild to PATH
+          uses: microsoft/setup-msbuild@v2
+          working-directory: ${inputs.WORKDIR}
+          with:
+            vs-version: '[15.9,15.10)'
+        - name: Build app for release
+          run: msbuild ${inputs.PROJFILE} -t:rebuild -verbosity:diag -property:Configuration=Release
+          working-directory: ${inputs.WORKDIR}

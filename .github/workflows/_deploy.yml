@@ -1,0 +1,29 @@
+name: Test Deploy  Workflow
+
+on:
+  workflow_dispatch:
+  workflow_call:
+    inputs:
+      env:
+        description: 'The name of the S3 bucket files will be uploaded to'
+        default: "dev"
+        required: true
+        type: string
+
+permissions:
+  id-token: write   # This is required for requesting the JWT
+  contents: read    # This is required for actions/checkout
+  packages: read
+  actions: read
+
+jobs:
+    deploy-env:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
+              with:
+                  fetch-depth: 1
+            - name: Dummy build process
+              run: |
+                echo "This is the deploy step "
