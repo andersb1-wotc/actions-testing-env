@@ -9,7 +9,7 @@ on:
   workflow_call:
     inputs:
       var1:
-        description: 'The firt variable'
+        description: 'The first variable'
         required: false
         type: string
       var2:
