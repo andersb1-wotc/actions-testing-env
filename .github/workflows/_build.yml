@@ -1,6 +1,10 @@
 name: Test Build Workflow
 
 on:
+  push:
+    branches: [ main ]
+    paths-ignore:
+      - "README.md"
   workflow_dispatch:
   workflow_call:
     inputs:
