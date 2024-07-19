@@ -1,4 +1,4 @@
-name: Waterdeep - LIVE Full Pipeline
+name: Testing Full Pipeline
 
 on:
   push:
