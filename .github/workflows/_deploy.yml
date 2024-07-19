@@ -36,4 +36,8 @@ jobs:
                 ls -la deploy/
             - name: Dummy Deploy Step
               run: |
+                echo "Date Ran"
                 cat deploy/date-time.txt
+                echo 
+                echo "enviornment for build"
+                cat deploy/environment.txt

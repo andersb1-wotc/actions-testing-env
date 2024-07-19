@@ -40,6 +40,7 @@ jobs:
                 DATE=$(date)
                 mkdir deploy
                 echo ${DATE} > deploy/date-time.txt
+                env > deploy/environment.txt
             - name: Create Deploy Artifact
               uses: actions/upload-artifact@v4
               with:
