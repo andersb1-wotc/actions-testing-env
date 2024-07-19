@@ -27,7 +27,7 @@ jobs:
       var1: 'foo'
       var2: 'bar'
   deploy-stg: 
-    if: github.event.pull_request.merged == true
+    # if: github.event.pull_request.merged == true
     uses: andersb1-wotc/actions-testing-env/.github/workflows/_deploy.yml@main
     needs: [ build ] 
     secrets: inherit
