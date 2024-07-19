@@ -22,7 +22,7 @@ jobs:
   build: 
     uses: andersb1-wotc/actions-testing-env/.github/workflows/_build.yml@main
     secrets: inherit
-     with: 
+    with: 
       var1: 'foo'
       var2: 'bar'
   deploy-stg: 
