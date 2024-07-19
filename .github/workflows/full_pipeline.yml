@@ -1,10 +1,10 @@
 name: Waterdeep - LIVE Full Pipeline
 
 on:
-  # push:
-  #   branches: [ main, feat/github-actions-1 ]
-  #   paths-ignore:
-  #     - "README.md"
+  push:
+    branches: [ main ]
+    paths-ignore:
+      - "README.md"
   workflow_dispatch:
 
 
