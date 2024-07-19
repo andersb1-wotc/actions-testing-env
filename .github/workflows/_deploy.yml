@@ -36,4 +36,4 @@ jobs:
                 ls -la deploy/
             - name: Dummy Deploy Step
               run: |
-                cat deploy/datetime.txt
+                cat deploy/date-time.txt
