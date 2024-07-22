@@ -1,4 +1,8 @@
 name: Pre-Deploy  Workflow
+inputs:
+  env:
+    default: dev
+    required: true
 runs:
   using: 'composite'
   steps:
