@@ -44,7 +44,7 @@ jobs:
                 echo 
                 echo "enviornment for build"
                 cat deploy/environment.txt
-            -name: pre-deploy-stg
+            - name: pre-deploy-stg
               # if: github.event.pull_request.merged == true
               # uses: andersb1-wotc/actions-testing-env/.github/actions/pre-deploy@main
               uses: .github/actions/pre-deploy
