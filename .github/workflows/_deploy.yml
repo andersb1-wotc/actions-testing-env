@@ -20,6 +20,7 @@ jobs:
     deploy-env:
         runs-on: ubuntu-latest
         environment: ${{ inputs.env }}
+        name: "deploy-${{ inputs.env }}"
         steps:
             - name: Checkout
               uses: actions/checkout@v4
