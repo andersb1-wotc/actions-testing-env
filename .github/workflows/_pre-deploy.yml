@@ -38,4 +38,7 @@ jobs:
             - name: Dummy Deploy Step
               run: |
                 echo "Check for env"                
-                cat deploy/environment.txt | grep ${{ inputs.env }}
+                cat ${{ inputs.env }}
+                echo "Do we have the env vars?"
+                cat deploy/environment.txt | wc -l 
+                
