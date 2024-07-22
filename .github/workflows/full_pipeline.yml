@@ -26,6 +26,13 @@ jobs:
     with: 
       var1: 'foo'
       var2: 'bar'
+  pre-deploy-stg: 
+    # if: github.event.pull_request.merged == true
+    uses: andersb1-wotc/actions-testing-env/.github/workflows/_pre-deploy.yml@main
+    needs: [ build ] 
+    secrets: inherit
+    with:
+      env: stg
   deploy-stg: 
     # if: github.event.pull_request.merged == true
     uses: andersb1-wotc/actions-testing-env/.github/workflows/_deploy.yml@main
@@ -33,6 +40,13 @@ jobs:
     secrets: inherit
     with:
       env: stg
+  pre-deploy-live: 
+    # if: github.event.pull_request.merged == true
+    uses: andersb1-wotc/actions-testing-env/.github/workflows/_pre-deploy.yml@main
+    needs: [ build ] 
+    secrets: inherit
+    with:
+      env: live
   deploy-live: 
     uses: andersb1-wotc/actions-testing-env/.github/workflows/_deploy.yml@main
     needs: [ build, deploy-stg ] 
