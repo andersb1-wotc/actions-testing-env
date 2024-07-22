@@ -20,6 +20,12 @@ jobs:
   #   uses: DnDBeyond/waterdeep-web/.github/workflows/_build-and-test.yml@feat/github-actions-1
   #   secrets: inherit
   #   #  with: # no inputs
+  build-win: 
+    uses: andersb1-wotc/actions-testing-env/.github/workflows/_build-win.yml@main
+    secrets: inherit
+    with: 
+      var1: 'foo'
+      var2: 'bar'
   build: 
     uses: andersb1-wotc/actions-testing-env/.github/workflows/_build.yml@main
     secrets: inherit
