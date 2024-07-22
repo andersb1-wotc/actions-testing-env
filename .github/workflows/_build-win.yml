@@ -1,0 +1,57 @@
+name: Test Build Workflow
+
+on:
+  # push:
+  #   branches: [ main ]
+  #   paths-ignore:
+  #     - "README.md"
+  workflow_dispatch:
+  workflow_call:
+    inputs:
+      var1:
+        description: 'The first variable'
+        required: false
+        type: string
+      var2:
+        description: 'The second variable'
+        required: false
+        type: string
+env: 
+  WATERDEEP_BUILD_NUMBER: "1.0.${{github.GITHUB_RUN_NUMBER}}.0" # "1.0.${{ env.BUILD_NUMBER }}.0"
+
+
+permissions:
+  id-token: write   # This is required for requesting the JWT
+  contents: read    # This is required for actions/checkout
+  packages: read
+  actions: read
+
+jobs:
+    build:
+        runs-on: windows-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
+              with:
+                  fetch-depth: 1
+            - name: Dummy build check
+              run: |
+                echo "This is the build step "
+            - name: Prepare deployment artifact
+              run: |
+                echo  ${{ github.workspace }}\waterdeep\Source\curse.waterdeep.web\PrepareDeploy.proj -verbosity:minimal /p:Version=${{env.WATERDEEP_BUILD_NUMBER}} /p:CompilationMode="Production"
+              env: 
+                WORKING_DIR: "${{ github.workspace }}" 
+                BUILD_PLANNAME: "WAT-WS-JOB1" 
+                # BUILD_NUMBER : 9999 # buildNumber
+                WATERDEEP_BUILD_NUMBER: "1.0.${github.run_number}.0" # ${WATERDEEP_BUILD_NUMBER}
+                DDB_PACKAGES_READ_ONLY: "${{ secrets.GITHUB_TOKEN }}" 
+                GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}" 
+
+            - name: Create Deploy Artifact
+              uses: actions/upload-artifact@v4
+              with:
+                name: DeployArtifact
+                path: deploy/
+                if-no-files-found: error
+
