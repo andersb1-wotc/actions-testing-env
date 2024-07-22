@@ -44,7 +44,7 @@ jobs:
                 WORKING_DIR: "${{ github.workspace }}" 
                 BUILD_PLANNAME: "WAT-WS-JOB1" 
                 # BUILD_NUMBER : 9999 # buildNumber
-                WATERDEEP_BUILD_NUMBER: "1.0.${github.run_number}.0" # ${WATERDEEP_BUILD_NUMBER}
+                WATERDEEP_BUILD_NUMBER: "1.0.${{github.run_number}}.0" # ${WATERDEEP_BUILD_NUMBER}
                 DDB_PACKAGES_READ_ONLY: "${{ secrets.GITHUB_TOKEN }}" 
                 GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}" 
 
