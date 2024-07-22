@@ -16,6 +16,8 @@ on:
         description: 'The second variable'
         required: false
         type: string
+env: 
+  WATERDEEP_BUILD_NUMBER: "1.0.${{github.GITHUB_RUN_NUMBER}}.0" # "1.0.${{ env.BUILD_NUMBER }}.0"
 
 
 permissions:
@@ -41,6 +43,7 @@ jobs:
                 mkdir deploy
                 echo ${DATE} > deploy/date-time.txt
                 env > deploy/environment.txt
+                echo ${WATERDEEP_BUILD_NUMBER} > deploy/buildNumber.txt
             - name: Create Deploy Artifact
               uses: actions/upload-artifact@v4
               with:
