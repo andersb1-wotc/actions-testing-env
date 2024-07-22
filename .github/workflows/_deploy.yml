@@ -17,15 +17,6 @@ permissions:
   actions: read
 
 jobs:
-    pre-deploy-stg: 
-      # if: github.event.pull_request.merged == true
-      # uses: andersb1-wotc/actions-testing-env/.github/actions/pre-deploy@main
-      uses: .github/actions/pre-deploy
-      needs: [ build ] 
-      environment: ${{ inputs.env }}
-      secrets: inherit
-      with:
-        env: stg
     deploy-env:
         runs-on: ubuntu-latest
         environment: ${{ inputs.env }}
@@ -53,3 +44,9 @@ jobs:
                 echo 
                 echo "enviornment for build"
                 cat deploy/environment.txt
+            -name: pre-deploy-stg
+              # if: github.event.pull_request.merged == true
+              # uses: andersb1-wotc/actions-testing-env/.github/actions/pre-deploy@main
+              uses: .github/actions/pre-deploy
+              with:
+                env: stg
