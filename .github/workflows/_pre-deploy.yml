@@ -38,7 +38,7 @@ jobs:
             - name: Dummy Deploy Step
               run: |
                 echo "Check for env"                
-                cat ${{ inputs.env }}
+                echo ${{ inputs.env }}
                 echo "What build number?"
                 cat deploy/deploy/buildNumber.txt
                 echo "Do we have the env vars?"
