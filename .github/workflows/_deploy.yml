@@ -48,5 +48,5 @@ jobs:
               # if: github.event.pull_request.merged == true
               # uses: andersb1-wotc/actions-testing-env/.github/actions/pre-deploy@main
               uses: ./.github/actions/pre-deploy
-              with:
-                env: stg
+              # with:
+              #   env: stg
