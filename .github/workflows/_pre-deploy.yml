@@ -40,7 +40,7 @@ jobs:
                 echo "Check for env"                
                 echo ${{ inputs.env }}
                 echo "What build number?"
-                cat deploy/deploy/buildNumber.txt
+                cat deploy/buildNumber.txt
                 echo "Do we have the env vars?"
                 cat deploy/environment.txt | wc -l 
                 
