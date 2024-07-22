@@ -5,7 +5,6 @@ inputs:
     required: true
 runs:
   using: 'composite'
-  shell: bash
   steps:
     - name: Checkout
       uses: actions/checkout@v4
@@ -16,11 +15,13 @@ runs:
         name: DeployArtifact
         path: deploy
     - name: Dummy Pre-deploy 
+      shell: bash
       run: |
         echo "This is a pre-deploy step "
         ls -la 
         ls -la deploy/
     - name: Dummy Deploy Step
+      shell: bash
       run: |
         echo "Check for env"                
         echo ${{ inputs.env }}
