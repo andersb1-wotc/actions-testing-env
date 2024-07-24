@@ -39,7 +39,7 @@ jobs:
                 echo "This is the build step "
             - name: Prepare deployment artifact
               run: |
-                echo  ${{ github.workspace }}\waterdeep\Source\curse.waterdeep.web\PrepareDeploy.proj -verbosity:minimal /p:Version=${{env.WATERDEEP_BUILD_NUMBER}} /p:CompilationMode="Production"
+                echo  # #${{ github.workspace }}\waterdeep\Source\curse.waterdeep.web\PrepareDeploy.proj -verbosity:minimal /p:Version=${{env.WATERDEEP_BUILD_NUMBER}} /p:CompilationMode="Production"
               env: 
                 WORKING_DIR: "${{ github.workspace }}" 
                 BUILD_PLANNAME: "WAT-WS-JOB1" 
@@ -47,11 +47,16 @@ jobs:
                 WATERDEEP_BUILD_NUMBER: "1.0.${{github.run_number}}.0" # ${WATERDEEP_BUILD_NUMBER}
                 DDB_PACKAGES_READ_ONLY: "${{ secrets.GITHUB_TOKEN }}" 
                 GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}" 
-
-            - name: Create Deploy Artifact
-              uses: actions/upload-artifact@v4
-              with:
-                name: DeployArtifact
-                path: deploy/
-                if-no-files-found: error
+            - name: check substring 
+              run: |
+                $GIT_SHA="${{ github.sha }}"
+                $APP_VERSION=$GIT_SHA.Substring($GIT_SHA.Length - 4)
+                echo "Application Version: "
+                echo $APP_VERSION
+            # - name: Create Deploy Artifact
+            #   uses: actions/upload-artifact@v4
+            #   with:
+            #     name: DeployArtifact
+            #     path: deploy/
+            #     if-no-files-found: error
 
