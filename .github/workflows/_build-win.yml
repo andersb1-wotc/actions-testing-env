@@ -52,8 +52,7 @@ jobs:
                 $GIT_SHA="${{ github.sha }}"
                 $APP_VERSION=$GIT_SHA.Substring($GIT_SHA.Length - 8)
                 echo "Application Version: "
-                echo $APP_VERSION
-                echo 
+                echo $APP_VERSION 
                 echo " Test deployment: ${{ github.ref }}-${{ github.sha }} "
             # - name: Create Deploy Artifact
             #   uses: actions/upload-artifact@v4
