@@ -50,7 +50,7 @@ jobs:
             - name: check substring 
               run: |
                 $GIT_SHA="${{ github.sha }}"
-                $APP_VERSION=$GIT_SHA.Substring($GIT_SHA.Length - 4)
+                $APP_VERSION=$GIT_SHA.Substring($GIT_SHA.Length - 8)
                 echo "Application Version: "
                 echo $APP_VERSION
             # - name: Create Deploy Artifact
