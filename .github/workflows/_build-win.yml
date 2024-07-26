@@ -54,6 +54,10 @@ jobs:
                 echo "Application Version: "
                 echo $APP_VERSION 
                 echo " Test deployment: ${{ github.ref }}-${{ github.sha }} "
+                Write-Output "${{env.DESCRIPTION}}"
+              env: 
+                AWS_DEFAULT_REGION: "us-east-2" 
+                DESCRIPTION: "Github Actions deployment ${{ github.ref }}-${{ github.sha }} "
             # - name: Create Deploy Artifact
             #   uses: actions/upload-artifact@v4
             #   with:
